@@ -418,9 +418,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _initData() {
-    DefaultAssetBundle.of(context).loadString("json/info.json").then((value) {
-      info = json.decode(value);
+  Future<void> _initData() async {
+    await DefaultAssetBundle.of(context)
+        .loadString("json/info.json")
+        .then((value) {
+      setState(() {
+        info = json.decode(value);
+      });
     });
   }
 }
